@@ -4,6 +4,7 @@ import classes from './World.module.scss';
 import icon from '../../../../images/icons.svg';
 import axios from '../../../../axios';
 import { Link } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 
 const region = [
   'Africa',
@@ -17,14 +18,15 @@ class World extends Component {
   state = {
     country: [],
     input: '',
-    show: false
+    show: false,
+    progress: 0
   };
 
   componentDidMount() {
     axios
       .get('/all')
       .then(res => {
-        this.setState({ country: res.data });
+        this.setState({ country: res.data, progress: 100 });
       })
       .catch(err => {
         console.log(err);
@@ -37,7 +39,7 @@ class World extends Component {
     axios
       .get(`/name/${this.state.input}`)
       .then(res => {
-        this.setState({ country: res.data });
+        this.setState({ country: res.data, progress: 100 });
       })
       .catch(err => {
         console.log(err);
@@ -52,7 +54,7 @@ class World extends Component {
     axios
       .get(`/region/${el}`)
       .then(res => {
-        this.setState({ country: res.data });
+        this.setState({ country: res.data, progress: 100 });
       })
       .catch(err => {
         console.log(err);
@@ -86,6 +88,14 @@ class World extends Component {
     }
     return (
       <section className={classes.World}>
+        <LoadingBar
+          color="var(--text-color)"
+          progress={this.state.progress}
+          onLoaderFinished={() =>
+            this.setState({ progress: 0 })
+          }
+          height={4}
+        />
         <Container>
           <div className={classes.WorldTop}>
             <form
