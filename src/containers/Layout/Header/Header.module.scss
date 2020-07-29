@@ -1,0 +1,46 @@
+.Header {
+  background-color: var(--elements-bg);
+  padding: 2rem 0;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+
+  &Item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &Heading {
+    font-weight: 800;
+  }
+
+  &Btn {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-right: 1.5rem;
+
+    & svg {
+      fill: currentColor;
+      height: 1.4rem;
+      width: 1.4rem;
+      margin-right: 1rem;
+      display: block;
+    }
+
+    & span {
+      font-weight: 600;
+      display: block;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

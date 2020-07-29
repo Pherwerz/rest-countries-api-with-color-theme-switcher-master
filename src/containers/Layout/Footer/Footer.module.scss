@@ -1,0 +1,16 @@
+.attribution {
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-color);
+
+  & a {
+    color: hsl(228, 45%, 44%);
+  }
+}
+
+.Footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
+}

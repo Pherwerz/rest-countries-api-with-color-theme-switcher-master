@@ -1,0 +1,12 @@
+.Links {
+  &:link,
+  &:visited {
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: var(--elements-bg);
+    font-size: inherit;
+    font-weight: 600;
+    padding: 0.7rem 4rem;
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+  }
+}
