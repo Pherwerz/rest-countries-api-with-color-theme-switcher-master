@@ -40,7 +40,7 @@ class Country extends Component {
               },
               {
                 name: 'Population',
-                data: res.data.population
+                data: new Intl.NumberFormat().format(res.data.population)
               },
               {
                 name: 'Region',
