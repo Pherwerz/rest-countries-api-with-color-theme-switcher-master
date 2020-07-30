@@ -1,10 +1,4 @@
-@import '../../variables';
-
 .Container {
   width: 80%;
   margin: 0 auto;
-
-  @include respond(phone) {
-    width: 90%;
-  }
 }
