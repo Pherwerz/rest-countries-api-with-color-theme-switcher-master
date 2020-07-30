@@ -31,7 +31,6 @@ class World extends Component {
           country: res.data,
           progress: 100
         });
-        console.log(this.state);
       })
       .catch(err => {
         console.log(err);
