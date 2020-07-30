@@ -30,26 +30,6 @@ class Country extends Component {
           const names = [];
           let status = {};
 
-          res.data.borders.forEach((el, i, arr) => {
-            axios
-              .get(`/alpha/${el}`)
-              .then(res2 => {
-                names.push(res2.data.name);
-                this.setState({
-                  progress: (100 / arr.length) * (i + 1)
-                });
-
-                if (i === arr.length - 1) {
-                  this.setState({
-                    borderName: names,
-                    country: { ...status },
-                    progress: 100
-                  });
-                }
-              })
-              .catch(err => console.log(err));
-          });
-
           status = {
             flag: res.data.flag,
             name: res.data.name,
@@ -60,9 +40,7 @@ class Country extends Component {
               },
               {
                 name: 'Population',
-                data: new Intl.NumberFormat().format(
-                  res.data.population
-                )
+                data: res.data.population
               },
               {
                 name: 'Region',
@@ -95,6 +73,33 @@ class Country extends Component {
             ],
             border: res.data.borders
           };
+
+          if (res.data.borders.length >= 1) {
+            res.data.borders.forEach((el, i, arr) => {
+              axios
+                .get(`/alpha/${el}`)
+                .then(res2 => {
+                  names.push(res2.data.name);
+                  this.setState({
+                    progress: (100 / arr.length) * (i + 1)
+                  });
+
+                  if (i === arr.length - 1) {
+                    this.setState({
+                      borderName: names,
+                      country: { ...status },
+                      progress: 100
+                    });
+                  }
+                })
+                .catch(err => console.log(err));
+            });
+          } else {
+            this.setState({
+              country: { ...status },
+              progress: 100
+            });
+          }
         })
         .catch(err => {
           console.log(err);
