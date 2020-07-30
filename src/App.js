@@ -4,7 +4,7 @@ import Layout from './containers/Layout/Layout';
 class App extends Component {
   state = {
     theme: 'light',
-    icon: 'fill'
+    icon: 'stroke'
   };
 
   clicked = () => {
