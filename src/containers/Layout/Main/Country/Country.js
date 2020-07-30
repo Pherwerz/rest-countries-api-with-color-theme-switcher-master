@@ -60,7 +60,9 @@ class Country extends Component {
               },
               {
                 name: 'Population',
-                data: res.data.population
+                data: new Intl.NumberFormat().format(
+                  res.data.population
+                )
               },
               {
                 name: 'Region',
@@ -158,7 +160,7 @@ class Country extends Component {
           onLoaderFinished={() =>
             this.setState({ progress: 0 })
           }
-          height={4}
+          height={3}
         />
         <Container>
           <Links path="/">&#8592;&nbsp;&nbsp; Back</Links>

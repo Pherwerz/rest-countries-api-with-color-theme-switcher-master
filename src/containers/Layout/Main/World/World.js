@@ -22,28 +22,29 @@ class World extends Component {
     progress: 0
   };
 
-  componentDidMount() {
+  loadData = path => {
+    this.setState({ progress: 40 });
     axios
-      .get('/all')
+      .get(path)
       .then(res => {
-        this.setState({ country: res.data, progress: 100 });
+        this.setState({
+          country: res.data,
+          progress: 100
+        });
+        console.log(this.state);
       })
       .catch(err => {
         console.log(err);
       });
+  };
+
+  componentDidMount() {
+    this.loadData('/all');
   }
 
   formSubmitted = e => {
     e.preventDefault();
-
-    axios
-      .get(`/name/${this.state.input}`)
-      .then(res => {
-        this.setState({ country: res.data, progress: 100 });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.loadData(`/name/${this.state.input}`);
   };
 
   inputHandler = e => {
@@ -51,14 +52,7 @@ class World extends Component {
   };
 
   buttonClicked = el => {
-    axios
-      .get(`/region/${el}`)
-      .then(res => {
-        this.setState({ country: res.data, progress: 100 });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.loadData(`/region/${el}`);
   };
 
   showHide = () => {
@@ -94,7 +88,7 @@ class World extends Component {
           onLoaderFinished={() =>
             this.setState({ progress: 0 })
           }
-          height={4}
+          height={3}
         />
         <Container>
           <div className={classes.WorldTop}>
@@ -135,7 +129,7 @@ class World extends Component {
           </div>
 
           <div className={classes.WorldWorlds}>
-            {this.state.country.map((cur, i) => (
+            {this.state.country.map(cur => (
               <Link
                 className={classes.WorldCountry}
                 key={cur.alpha3Code}
@@ -156,7 +150,11 @@ class World extends Component {
 
                     <div className={classes.WorldItems}>
                       <h4>Population :</h4>
-                      <span>{cur.population}</span>
+                      <span>
+                        {new Intl.NumberFormat().format(
+                          cur.population
+                        )}
+                      </span>
                     </div>
 
                     <div className={classes.WorldItems}>

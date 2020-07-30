@@ -1,13 +1,24 @@
+@import '../../../../variables';
+
 .Country {
   margin-top: 15rem;
+  margin-bottom: 5rem;
 
   &Item {
     display: flex;
     margin-top: 5rem;
     align-items: center;
 
+    @include respond(phone) {
+      flex-flow: column;
+    }
+
     & > * {
       flex: 0 0 50%;
+
+      @include respond(phone) {
+        flex: none;
+      }
     }
   }
 
@@ -17,6 +28,11 @@
     width: 100%;
     height: 30rem;
     padding-right: 5rem;
+
+    @include respond(phone) {
+      padding-right: 0;
+      margin-bottom: 2rem;
+    }
 
     & img {
       width: 100%;
@@ -45,11 +61,21 @@
     display: flex;
     flex-flow: column wrap;
     margin-bottom: 3rem;
+
+    @include respond(phone) {
+      height: auto;
+    }
   }
 
   &Items {
     display: flex;
     margin-bottom: 1rem;
+
+    @include respond(phone) {
+      &:nth-child(5) {
+        margin-bottom: 5rem;
+      }
+    }
   }
 
   &Border {
@@ -57,8 +83,17 @@
     align-items: flex-start;
     width: 100%;
 
+    @include respond(phone) {
+      flex-flow: column;
+    }
+
     & h4 {
       flex: 0 0 30%;
+
+      @include respond(phone) {
+        flex: none;
+        margin-bottom: 1rem;
+      }
     }
   }
 
@@ -66,6 +101,10 @@
     display: flex;
     flex-flow: row wrap;
     flex: 1;
+
+    @include respond(phone) {
+      flex: none;
+    }
 
     & a {
       margin-right: 0.5rem;
