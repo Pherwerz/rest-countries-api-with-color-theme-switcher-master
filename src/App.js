@@ -3,7 +3,7 @@ import Layout from './containers/Layout/Layout';
 
 class App extends Component {
   state = {
-    theme: 'dark',
+    theme: 'light',
     icon: 'fill'
   };
 
