@@ -10,12 +10,12 @@
     {
       "src": "logo-mobile.svg",
       "sizes": "192x192",
-      "type": "image/svg"
+      "type": "image/svg+xml"
     },
     {
       "src": "logo-mobile.svg",
       "sizes": "192x192",
-      "type": "image/svg"
+      "type": "image/svg+xml"
     }
   ],
   "start_url": ".",
